@@ -1,0 +1,33 @@
+:root {
+  --color-dark: #1A1A2E;
+  --color-white: #FFFFFF;
+  --color-orange: #E85D24;       /* CTA 主色 */
+  --color-teal: #1D9E75;         /* Mini 類別色 */
+  --color-teal-bg: #C8F7E5;
+  --color-teal-text: #085041;
+  --color-purple: #7F77DD;       /* Minecraft 類別色 */
+  --color-purple-bg: #E8E6FF;
+  --color-purple-text: #3C3489;
+  --color-coral: #D85A30;        /* Roblox 類別色 */
+  --color-coral-bg: #FFE8DF;
+  --color-coral-text: #712B13;
+  --color-blue: #378ADD;         /* AI 類別色 */
+  --color-blue-bg: #E6F1FB;
+  --color-blue-text: #0C447C;
+  --color-gray-bg: #F5F5F5;
+  --color-gray-text: #444441;
+  --color-border: #CCCCCC;
+
+  /* 字型 */
+  --font-sans: 'Noto Sans TC', sans-serif;
+  --font-display: 'Bebas Neue', sans-serif;
+
+  /* 間距 */
+  --max-width: 1440px;
+  --section-padding: 80px 24px;
+  --card-radius: 12px;
+
+  /* 陰影 */
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 20px rgba(0,0,0,0.12);
+}

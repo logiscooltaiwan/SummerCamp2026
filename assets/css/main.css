@@ -1,0 +1,3335 @@
+/* 主要的 CSS 樣式 */
+body {
+  font-family: var(--font-sans);
+  color: var(--color-dark);
+  background-color: var(--color-white);
+  padding-top: 80px; /* 預留空間給固定在頂部的 Navbar */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+}
+
+/* =========================================
+   全域 RWD 基礎設定：圖片與觸控高度
+   ========================================= */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 767px) {
+  button, 
+  .btn-primary, 
+  .btn-register, 
+  .btn-cta, 
+  .btn-details, 
+  .accordion-header, 
+  .schedule-select {
+    min-height: 44px;
+  }
+}
+
+/* =========================================
+   Navbar 導覽列
+   ========================================= */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  background-color: transparent;
+  padding: 24px 0;
+}
+
+.navbar.sticky {
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-sm);
+  padding: 16px 0;
+}
+
+.nav-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Logo */
+.logo {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-dark);
+  transition: color 0.3s ease;
+}
+
+/* Hamburger 按鈕 */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001; /* 確保在全螢幕選單之上 */
+}
+
+.hamburger span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: var(--color-dark);
+  margin: 5px 0;
+  transition: all 0.3s ease;
+}
+
+/* 選單與列表 */
+.nav-menu {
+  display: flex;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-item {
+  position: relative;
+}
+
+/* 選單連結與 Hover 底線效果 */
+.nav-link {
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--color-dark);
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--color-orange);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-item:hover > .nav-link::after {
+  width: 100%;
+}
+
+/* 下拉子選單 */
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 15px);
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-md);
+  border-radius: var(--card-radius);
+  padding: 12px 0;
+  min-width: 160px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+/* 為了不要讓滑鼠在下拉途中失去 hover 狀態，可以加一個隱形的橋樑 */
+.has-dropdown::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 20px;
+}
+
+.has-dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+.dropdown-link {
+  display: block;
+  padding: 10px 24px;
+  color: var(--color-dark);
+  font-size: 15px;
+  font-weight: 500;
+  transition: background-color 0.2s, color 0.2s;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.dropdown-link:hover {
+  background-color: var(--color-gray-bg);
+  color: var(--color-orange);
+}
+
+/* 立即報名按鈕 */
+.btn-register {
+  display: inline-block;
+  background-color: var(--color-orange);
+  color: var(--color-white);
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-weight: 700;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.btn-register.nav-btn {
+  margin-left: 10px;
+}
+
+/* 按下/Hover 時加深 10%  */
+.btn-register:hover {
+  filter: brightness(0.9);
+  color: var(--color-white);
+}
+
+/* =========================================
+   手機版 RWD (≤ 767px)
+   ========================================= */
+@media (max-width: 767px) {
+  .hamburger {
+    display: block;
+  }
+  
+  .hamburger.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .hamburger.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.98);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(100%);
+    transition: transform 0.4s ease;
+  }
+
+  .nav-menu.active {
+    transform: translateX(0);
+  }
+
+  .nav-list {
+    flex-direction: column;
+    gap: 24px;
+    text-align: center;
+  }
+
+  .nav-link {
+    font-size: 20px;
+  }
+  
+  .nav-link::after {
+    display: none; /* 手機版不一定需要底線動態 */
+  }
+
+  /* 手機版下拉選單：預設隱藏，點擊文字後展開 */
+  .has-dropdown:hover .dropdown-menu {
+    /* 關閉 hover 觸發，改由 JS 控制 active 狀態 */
+    opacity: 0;
+    visibility: hidden;
+    transform: none;
+    pointer-events: none;
+  }
+  
+  .dropdown-menu {
+    position: static;
+    transform: none;
+    box-shadow: none;
+    background-color: transparent;
+    padding: 10px 0 0 0;
+    display: none;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .has-dropdown.active .dropdown-menu {
+    display: block;
+  }
+  
+  .btn-register.nav-btn {
+    margin-left: 0;
+    margin-top: 10px;
+    font-size: 18px;
+    padding: 14px 36px;
+  }
+}
+
+/* =========================================
+   首頁 - Hero 區塊
+   ========================================= */
+.hero {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--color-dark);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.hero-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--section-padding);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+}
+
+.hero-content {
+  flex: 0.9;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 2;
+}
+
+.hero-visual {
+  flex: 1.1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.visual-placeholder {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(135deg, rgba(232, 93, 36, 0.2) 0%, rgba(127, 119, 221, 0.2) 100%);
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  border-radius: var(--card-radius);
+  position: relative;
+}
+
+.visual-placeholder::after {
+  content: '圖片視覺佔位';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 20px;
+}
+
+.hero-badge {
+  position: relative;
+  color: var(--color-white);
+  font-weight: 700;
+  padding: 8px 20px;
+  font-size: 16px;
+  margin-bottom: 24px;
+  display: inline-flex;
+  align-items: center;
+  z-index: 1;
+}
+
+.hero-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-orange);
+  transform: skewX(-12deg);
+  z-index: -1;
+}
+
+.hero-title {
+  font-size: 52px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 24px;
+  color: var(--color-white);
+}
+
+.hero-subtitle {
+  font-size: 20px;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-orange);
+  color: var(--color-white);
+  padding: 16px 40px;
+  border-radius: 40px;
+  font-weight: 700;
+  font-size: 20px;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-primary .arrow {
+  margin-left: 8px;
+  transition: transform 0.3s ease;
+}
+
+.btn-primary:hover {
+  filter: brightness(0.9);
+  color: var(--color-white);
+}
+
+.btn-primary:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* =========================================
+   動畫特效 (fade-in + slide-up)
+   ========================================= */
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  opacity: 0;
+  animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.anim-delay-1 { animation-delay: 0.1s; }
+.anim-delay-2 { animation-delay: 0.2s; }
+.anim-delay-3 { animation-delay: 0.3s; }
+.anim-delay-4 { animation-delay: 0.4s; }
+.anim-delay-5 { animation-delay: 0.5s; }
+
+/* 滾動觸發動畫框架 */
+.animate-on-scroll {
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.animate-on-scroll.slide-up { transform: translateY(30px); }
+.animate-on-scroll.slide-left { transform: translateX(-30px); }
+.animate-on-scroll.fade-in { transform: translate(0); }
+
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translate(0);
+}
+
+/* 尊重使用者設定：減少動畫 */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .animate-on-scroll {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* =========================================
+   手機版 RWD (≤ 767px) - Hero 專用
+   ========================================= */
+@media (max-width: 767px) {
+  .hero {
+    min-height: 80vh;
+    padding-top: 80px; /* 為了避開 Navbar */
+  }
+
+  .hero-container {
+    flex-direction: column;
+    padding: 60px 24px;
+    gap: 32px;
+  }
+
+  .hero-title {
+    font-size: 36px; /* 手機版標語字級縮小 */
+  }
+
+  .hero-subtitle {
+    font-size: 16px;
+  }
+
+  .hero-actions {
+    width: 100%;
+  }
+
+  .btn-primary {
+    width: 100%;
+    padding: 16px 20px;
+  }
+}
+
+/* =========================================
+   首頁 - 活動亮點數字
+   ========================================= */
+.highlights-section {
+  background-color: var(--color-white);
+  padding: 60px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.highlights-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.highlight-card {
+  padding: 32px 24px;
+  border-radius: var(--card-radius);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.highlight-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+/* 四種顏色變數交替使用 (teal, purple, coral, blue) */
+.highlight-card.color-0 {
+  background-color: var(--color-teal-bg);
+  color: var(--color-teal-text);
+}
+.highlight-card.color-1 {
+  background-color: var(--color-purple-bg);
+  color: var(--color-purple-text);
+}
+.highlight-card.color-2 {
+  background-color: var(--color-coral-bg);
+  color: var(--color-coral-text);
+}
+.highlight-card.color-3 {
+  background-color: var(--color-blue-bg);
+  color: var(--color-blue-text);
+}
+
+.highlight-number-wrap {
+  font-family: var(--font-display);
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.highlight-label {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/* RWD for highlights */
+@media (max-width: 767px) {
+  .highlights-section {
+    padding: 40px 0;
+  }
+  
+  .highlights-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  
+  .highlight-card {
+    padding: 24px 16px;
+  }
+  
+  .highlight-number-wrap {
+    font-size: 48px;
+  }
+  
+  .highlight-label {
+    font-size: 16px;
+  }
+}
+
+/* =========================================
+   首頁 - 課程分類
+   ========================================= */
+.categories-section {
+  padding: var(--section-padding);
+  background-color: var(--color-gray-bg);
+}
+
+.section-title {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  color: var(--color-dark);
+}
+
+.categories-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.category-card {
+  display: flex;
+  flex-direction: column;
+  padding: 32px 24px;
+  border-radius: var(--card-radius);
+  text-decoration: none;
+  color: var(--color-dark);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background-color: var(--color-white);
+}
+
+.category-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.category-icon {
+  font-size: 40px;
+  margin-bottom: 16px;
+}
+
+.category-name {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.category-count {
+  font-size: 14px;
+  color: rgba(0,0,0,0.6);
+  margin-bottom: 8px;
+  flex: 1;
+}
+
+.category-age {
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0.75;
+  margin-bottom: 16px;
+}
+
+.category-link-text {
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+}
+
+.category-link-text::after {
+  content: '→';
+  margin-left: 8px;
+  transition: transform 0.2s ease;
+}
+
+.category-card:hover .category-link-text::after {
+  transform: translateX(4px);
+}
+
+/* RWD for categories */
+@media (max-width: 991px) {
+  .categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .categories-grid {
+    grid-template-columns: 1fr;
+  }
+  .section-title {
+    font-size: 28px;
+    margin-bottom: 32px;
+  }
+}
+
+/* =========================================
+   首頁 - 下午活動 (Carousel & Grid)
+   ========================================= */
+.activities-section {
+  padding: var(--section-padding);
+  background-color: var(--color-white);
+  text-align: center;
+}
+
+.activities-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.carousel-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin: 0 auto 32px auto;
+  gap: 16px;
+}
+
+.carousel-btn {
+  background-color: var(--color-gray-bg);
+  color: var(--color-dark);
+  border: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.2s, color 0.2s;
+  flex-shrink: 0;
+  z-index: 2;
+}
+
+.carousel-btn:hover {
+  background-color: var(--color-orange);
+  color: var(--color-white);
+}
+
+.carousel-viewport {
+  flex: 1;
+  overflow: hidden;
+  touch-action: pan-y; /* 防止垂直拖動被我們攔截，但我們只需要攔截橫移 */
+}
+
+/* 軌道 */
+.carousel-track {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.4s ease-out;
+}
+
+/* 卡片 */
+.activity-card {
+  flex: 0 0 calc((100% - 80px) / 5); /* 預設 5 張 */
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-gray-bg);
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  text-align: left;
+}
+
+.activity-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background-color: #E2E2E2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.activity-image::after {
+  content: '活動圖片佔位';
+  color: rgba(0,0,0,0.4);
+  font-size: 14px;
+}
+
+.activity-info {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.activity-emoji {
+  font-size: 28px;
+}
+
+.activity-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-dark);
+}
+
+.activities-note {
+  font-size: 18px;
+  color: var(--color-gray-text);
+  font-weight: 500;
+}
+
+/* RWD for activities */
+@media (max-width: 1024px) {
+  .activity-card {
+    flex: 0 0 calc((100% - 40px) / 3); /* 平板顯示 3 張 */
+  }
+}
+
+@media (max-width: 767px) {
+  /* 手機版改為 2 欄 Grid，取消 Carousel 樣式 */
+  .carousel-wrapper {
+    display: block;
+    margin-bottom: 24px;
+  }
+  
+  .carousel-btn {
+    display: none; /* 隱藏箭頭 */
+  }
+  
+  .carousel-viewport {
+    overflow: visible;
+  }
+  
+  .carousel-track {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    transform: none !important; /* 強制覆蓋 js 設定的 translate */
+    transition: none;
+  }
+  
+  .activity-card {
+    width: 100%;
+    flex: none;
+  }
+  
+  .activities-note {
+    font-size: 16px;
+  }
+}
+
+/* =========================================
+   首頁 - 定價方案
+   ========================================= */
+.pricing-section {
+  padding: 80px 24px;
+  background-color: var(--color-gray-bg);
+}
+
+.pricing-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.pricing-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.original-price {
+  font-size: 24px;
+  color: var(--color-gray-text);
+  text-decoration: line-through;
+  margin-top: 8px;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.pricing-card {
+  background-color: var(--color-white);
+  border-radius: var(--card-radius);
+  padding: 40px 32px;
+  text-align: center;
+  position: relative;
+  border: 2px solid transparent;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.pricing-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* 針對作用中的方案加上強調邊框與陰影 */
+.pricing-card.active {
+  border-color: var(--color-orange);
+  box-shadow: var(--shadow-md);
+  transform: scale(1.02);
+}
+
+.pricing-card.active:hover {
+  transform: scale(1.02) translateY(-8px);
+}
+
+.badge-active {
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--color-orange);
+  color: var(--color-white);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.pricing-name {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.pricing-price {
+  font-family: var(--font-display);
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.pricing-price::before {
+  content: '$';
+  font-size: 28px;
+  margin-top: 8px;
+  margin-right: 4px;
+  font-family: var(--font-sans);
+}
+
+.pricing-saving {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.pricing-deadline {
+  color: var(--color-gray-text);
+  font-size: 16px;
+  margin-bottom: 32px;
+  flex: 1;
+}
+
+.btn-pricing {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  border-radius: 40px;
+  font-weight: 700;
+  font-size: 18px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  color: var(--color-white);
+}
+
+.btn-pricing:hover {
+  filter: brightness(0.9);
+}
+
+/* 方案底下的加碼優惠區 */
+.bonus-section {
+  background-color: var(--color-white);
+  border-radius: var(--card-radius);
+  padding: 40px;
+  text-align: center;
+}
+
+.bonus-section h3 {
+  font-size: 24px;
+  margin-bottom: 24px;
+  color: var(--color-dark);
+}
+
+.bonus-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.bonus-item {
+  background-color: var(--color-gray-bg);
+  padding: 16px 24px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  min-width: 160px;
+}
+
+.bonus-label {
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--color-orange);
+  margin-bottom: 8px;
+}
+
+.bonus-desc {
+  font-size: 14px;
+  color: var(--color-gray-text);
+}
+
+/* RWD for pricing */
+@media (max-width: 991px) {
+  .pricing-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .pricing-card {
+    padding: 32px 20px;
+  }
+  .pricing-price {
+    font-size: 44px;
+  }
+}
+
+@media (max-width: 767px) {
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .pricing-card.active {
+    transform: none;
+  }
+  
+  .pricing-card.active:hover {
+    transform: translateY(-8px);
+  }
+  
+  .bonus-section {
+    padding: 24px 16px;
+  }
+  .bonus-item {
+    width: calc(50% - 8px);
+    min-width: unset;
+  }
+}
+
+/* =========================================
+   首頁 - 時程表
+   ========================================= */
+.schedule-section {
+  padding: 80px 24px;
+  background-color: var(--color-white);
+}
+
+.schedule-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.schedule-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.tab-btn {
+  background-color: var(--color-gray-bg);
+  border: none;
+  padding: 12px 32px;
+  font-size: 18px;
+  font-weight: 700;
+  border-radius: 30px;
+  color: var(--color-gray-text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+  background-color: #E2E2E2;
+}
+
+.tab-btn.active {
+  background-color: var(--color-dark);
+  color: var(--color-white);
+}
+
+.schedule-select-wrapper {
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.schedule-select-wrapper label {
+  font-weight: 700;
+  margin-right: 8px;
+  font-size: 16px;
+}
+
+.schedule-select {
+  padding: 10px 16px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-white);
+  min-width: 200px;
+}
+
+.d-block-mobile { display: none; }
+.d-none-mobile { display: flex; }
+
+.schedule-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.week-card {
+  display: none;
+  background-color: var(--color-gray-bg);
+  border-radius: var(--card-radius);
+  padding: 24px;
+}
+
+@keyframes fadeInCard {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (min-width: 768px) {
+  .schedule-content.show-july .week-card[data-month="july"] {
+    display: block;
+    animation: fadeInCard 0.3s ease forwards;
+  }
+  
+  .schedule-content.show-august .week-card[data-month="august"] {
+    display: block;
+    animation: fadeInCard 0.3s ease forwards;
+  }
+}
+
+.week-header {
+  border-bottom: 2px solid var(--color-white);
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.week-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.week-dates {
+  font-size: 16px;
+  color: var(--color-gray-text);
+}
+
+.schedule-note {
+  background-color: var(--color-orange);
+  color: var(--color-white);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 12px;
+}
+
+.schedule-course {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  gap: 12px;
+}
+
+.schedule-course:last-child {
+  margin-bottom: 0;
+}
+
+.course-tag {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 6px;
+  min-width: 48px;
+  text-align: center;
+}
+
+.course-name {
+  font-size: 16px;
+  font-weight: 500;
+  flex: 1;
+}
+
+/* RWD for Schedule */
+@media (max-width: 767px) {
+  .d-none-mobile { display: none; }
+  .d-block-mobile { display: block; }
+  
+  .schedule-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .week-card { display: none !important; }
+  .week-card.active-mobile { 
+    display: block !important;
+    animation: fadeInCard 0.3s ease forwards;
+  }
+}
+
+/* =========================================
+   首頁 - 常見問題 Q&A
+   ========================================= */
+.faq-section {
+  padding: 80px 24px;
+  background-color: var(--color-gray-bg);
+}
+
+.faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.accordion-wrapper {
+  margin-bottom: 40px;
+}
+
+.accordion-item {
+  background-color: var(--color-white);
+  border-radius: 8px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.accordion-header {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-dark);
+  transition: color 0.3s ease;
+}
+
+.accordion-header:hover {
+  color: var(--color-orange);
+}
+
+.accordion-title {
+  flex: 1;
+  padding-right: 24px;
+  line-height: 1.4;
+}
+
+.accordion-icon {
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--color-orange);
+  transition: transform 0.3s ease;
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  background-color: var(--color-white);
+}
+
+.accordion-content-inner {
+  padding: 0 24px 24px 24px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-gray-text);
+  border-top: 1px solid var(--color-border);
+  margin-top: -8px; 
+  padding-top: 16px;
+}
+
+.accordion-item.active .accordion-header {
+  color: var(--color-orange);
+}
+
+.accordion-item.active .accordion-icon {
+  transform: rotate(180deg);
+}
+
+.faq-more {
+  text-align: center;
+}
+
+.faq-more-link {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-orange);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.faq-more-link .arrow {
+  margin-left: 8px;
+  transition: transform 0.3s ease;
+}
+
+.faq-more-link:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* =========================================
+   首頁 - 底部 CTA 區
+   ========================================= */
+.cta-section {
+  padding: 100px 24px;
+  background-color: var(--color-dark);
+  color: var(--color-white);
+  text-align: center;
+}
+
+.cta-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cta-title {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: var(--color-white);
+}
+
+.cta-subtitle {
+  font-size: 20px;
+  margin-bottom: 40px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.btn-cta {
+  display: inline-block;
+  background-color: var(--color-orange);
+  color: var(--color-white);
+  font-size: 24px;
+  font-weight: 700;
+  width: 100%;
+  max-width: 280px;
+  padding: 16px 0;
+  border-radius: 40px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  margin-bottom: 24px;
+}
+
+.btn-cta:hover {
+  filter: brightness(0.9);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(232, 93, 36, 0.3);
+}
+
+.cta-note {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* RWD for FAQ & CTA */
+@media (max-width: 767px) {
+  .faq-section {
+    padding: 60px 24px;
+  }
+  
+  .accordion-header {
+    font-size: 16px;
+    padding: 20px;
+  }
+  
+  .cta-section {
+    padding: 60px 24px;
+  }
+  
+  .cta-title {
+    font-size: 36px;
+  }
+  
+  .cta-subtitle {
+    font-size: 16px;
+    margin-bottom: 32px;
+  }
+}
+
+/* =========================================
+   分頁 - 課程分類 Hero
+   ========================================= */
+.course-hero {
+  padding: 120px 24px 60px 24px;
+  text-align: center;
+}
+
+.course-hero-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.breadcrumbs {
+  font-size: 14px;
+  color: var(--color-gray-text);
+  margin-bottom: 24px;
+}
+
+.breadcrumbs a {
+  color: var(--color-dark);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+.course-category-title {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.course-category-desc {
+  font-size: 18px;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* =========================================
+   分頁 - 課程清單
+   ========================================= */
+.course-list-section {
+  padding: 60px 24px;
+  background-color: var(--color-white);
+}
+
+.course-list-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.course-card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--card-radius);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.course-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.course-badge-new {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background-color: var(--color-orange);
+  color: var(--color-white);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 12px;
+  z-index: 1;
+}
+
+.course-card-content {
+  padding: 32px 24px 24px 24px;
+  flex: 1;
+}
+
+.course-age-badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+
+.course-card-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.course-card-tagline {
+  font-size: 16px;
+  color: var(--color-gray-text);
+  line-height: 1.6;
+}
+
+.course-card-footer {
+  padding: 0 24px 24px 24px;
+}
+
+.btn-details {
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 16px;
+}
+
+/* =========================================
+   分頁 - 課程 Modal 彈窗 (精細化設計)
+   ========================================= */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  padding: 24px;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.course-modal {
+  background-color: var(--color-white);
+  width: 100%;
+  max-width: 720px;
+  max-height: 90vh;
+  border-radius: 16px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: scale(0.95);
+  opacity: 0;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.05);
+  border: none;
+  border-radius: 50%;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: background-color 0.2s ease;
+}
+
+.modal-close-btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.modal-overlay.active .course-modal {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.modal-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* 防止內容撐破 body */
+  position: relative;
+}
+
+.modal-scroll-area {
+  overflow-y: auto;
+  flex: 1;
+  padding-bottom: 20px; /* 留白 */
+  
+  /* 捲軸美化 (Webkit) */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,0.2) transparent;
+}
+
+.modal-scroll-area::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-scroll-area::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modal-scroll-area::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.1);
+  border-radius: 10px;
+}
+
+.modal-scroll-area::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0,0,0,0.2);
+}
+
+/* Modal Header */
+.modal-refined-header {
+  padding: 32px 32px;
+  position: relative;
+}
+
+.modal-new-badge {
+  background-color: #f44336; /* 橘紅色 */
+  color: #fff;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 700;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+.modal-refined-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+}
+
+.modal-refined-tagline {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+
+.modal-header-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.modal-badge-item {
+  font-size: 13px;
+  color: #555;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+/* Modal Tabs */
+.modal-tabs-section {
+  padding: 0 32px;
+  margin-top: 24px;
+}
+
+.modal-tabs-desktop {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.tab-btn-refined {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 20px;
+  background-color: #eee;
+  color: #666;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modal-tabs-mobile {
+  display: none;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  margin-bottom: 24px;
+}
+
+.tab-pane-refined {
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+
+.tab-pane-refined.active {
+  display: block;
+}
+
+.tab-day-title-refined {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.tab-day-points-refined {
+  list-style: none;
+  padding: 0;
+}
+
+.tab-day-points-refined li {
+  font-size: 16px;
+  margin-bottom: 12px;
+  line-height: 1.6;
+  display: flex;
+  align-items: flex-start;
+}
+
+.point-check {
+  margin-right: 12px;
+  font-weight: 700;
+}
+
+/* Intro & Takeaway */
+.modal-section-intro {
+  padding: 24px 32px;
+}
+
+.section-label-small {
+  font-size: 14px;
+  color: #999;
+  margin-bottom: 8px;
+}
+
+.modal-intro-text {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #333;
+}
+
+.modal-section-takeaway {
+  padding: 0 32px 32px;
+}
+
+.takeaway-box-refined {
+  background-color: #E8F5E9;
+  padding: 24px;
+  border-radius: 8px;
+  display: flex;
+  gap: 16px;
+  color: #2E7D32;
+}
+
+.takeaway-box-icon {
+  font-size: 24px;
+}
+
+.takeaway-box-content {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* Footer */
+.modal-refined-footer {
+  padding: 20px 32px;
+  border-top: 1px solid #eee;
+}
+
+.btn-modal-register-refined {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 52px;
+  background-color: #f44336;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 26px;
+  font-size: 18px;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.btn-modal-register-refined:hover {
+  filter: brightness(0.9);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 767px) {
+  .modal-tabs-desktop { display: none; }
+  .modal-tabs-mobile { display: block; }
+  .modal-refined-header { padding: 24px; }
+  .modal-tabs-section { padding: 0 24px; }
+  .modal-section-intro { padding: 24px; }
+  .modal-section-takeaway { padding: 0 24px 24px; }
+  .modal-refined-footer { padding: 16px 24px; }
+}
+
+/* RWD for Courses */
+@media (max-width: 991px) {
+  .course-list-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .course-category-title {
+    font-size: 36px;
+  }
+  .course-list-container {
+    grid-template-columns: 1fr;
+  }
+  .modal-overlay {
+    padding: 16px;
+  }
+  .modal-body {
+    padding: 24px;
+  }
+  .tab-btn-modal {
+    padding: 10px 12px;
+    font-size: 15px;
+    flex: 1;
+    text-align: center;
+  }
+}
+
+/* =========================================
+   分頁 - 完整常見問題 (faq.html) 專屬樣式
+   ========================================= */
+.faq-page-hero {
+  padding: 140px 24px 80px 24px;
+  text-align: center;
+  background-color: var(--color-dark);
+  color: var(--color-white);
+}
+
+.faq-page-title {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.faq-page-subtitle {
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.faq-page-content {
+  padding: 60px 24px 80px 24px;
+  background-color: var(--color-gray-bg);
+}
+
+.faq-page-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-category-header {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  margin-top: 48px;
+  padding-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 2px solid;
+}
+
+.faq-category-header:first-child {
+  margin-top: 0;
+}
+
+@media (max-width: 767px) {
+  .faq-page-hero {
+    padding: 100px 24px 60px 24px;
+  }
+  .faq-page-title {
+    font-size: 36px;
+  }
+}
+
+/* =========================================
+   Global Footer
+   ========================================= */
+.site-footer {
+  background-color: #0f172a; /* 深色背景符合全站現代感 */
+  color: #fff;
+  padding: 80px 0 40px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1.5fr;
+  gap: 60px;
+  margin-bottom: 60px;
+}
+
+.footer-logo {
+  font-size: 24px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 24px;
+}
+
+.footer-desc {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.8;
+}
+
+.footer-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 24px;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 12px;
+}
+
+.footer-links a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--color-orange);
+  padding-left: 5px;
+}
+
+.footer-contact p {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-bottom {
+  padding-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.footer-bottom p {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+@media (max-width: 1024px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 767px) {
+  .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+  .site-footer { padding: 40px 24px 30px 24px; }
+  .footer-logo { font-size: 20px; }
+}
+
+/* =========================================
+   Global Line FAB (Floating Action Button)
+   ========================================= */
+.line-fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background-color: #06C755;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 40px;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: var(--shadow-md);
+  z-index: 1000;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.line-fab:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(6, 199, 85, 0.4);
+}
+
+.line-fab svg {
+  display: block;
+}
+
+/* =========================================
+   Global Footer
+   ========================================= */
+.site-footer {
+  background-color: #0f172a;
+  color: #fff;
+  padding: 80px 0 40px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1.5fr;
+  gap: 60px;
+  margin-bottom: 60px;
+}
+
+.footer-logo {
+  font-size: 24px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 24px;
+}
+
+.footer-desc {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.footer-social {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.footer-social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.footer-social-btn:hover {
+  background-color: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.footer-social-btn svg {
+  flex-shrink: 0;
+}
+
+.footer-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 24px;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 12px;
+}
+
+.footer-links a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--color-orange);
+  padding-left: 5px;
+}
+
+.footer-contact p {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-bottom {
+  padding-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.footer-bottom p {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+@media (max-width: 1024px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 767px) {
+  .footer-grid { display: flex; flex-direction: column; gap: 40px; }
+  .site-footer { padding: 60px 24px 30px 24px; }
+  .footer-logo { font-size: 20px; }
+}
+
+@media (max-width: 991px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .footer-brand {
+    grid-column: 1 / -1; /* 跨越所有行 */
+  }
+}
+
+@media (max-width: 767px) {
+  .site-footer {
+    padding: 48px 24px 24px;
+  }
+  .footer-grid {
+    display: flex; /* 改用 flex 方便排 order */
+    flex-direction: column;
+    gap: 40px;
+    text-align: left;
+  }
+
+  .footer-brand { order: 1; }
+  .footer-contact { order: 2; }
+  .footer-links { order: 3; }
+}
+
+/* =========================================
+   課程總覽頁 courses.html 專屬樣式
+   ========================================= */
+
+/* 區塊 1：Hero */
+.courses-hero {
+  background-color: var(--color-dark);
+  height: 280px;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  position: relative;
+  overflow: hidden;
+  margin-top: 0;
+}
+
+.courses-hero-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* =========================================
+   分頁 - 課程總覽頁 (courses.html) - 極致美化版
+   ========================================= */
+
+/* Hero 區塊：背景圖片輪播與文字疊層 */
+.overview-hero-carousel {
+  position: relative;
+  height: 480px; /* 增加高度以容納導覽指示點 */
+  overflow: hidden;
+  background-color: #0f172a;
+  color: #fff;
+}
+
+.carousel-slides {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 800ms ease-in-out;
+  z-index: 1;
+}
+
+.carousel-slide.active {
+  opacity: 1;
+}
+
+/* --- Slide 模式 (Activities) --- */
+.carousel-viewport {
+  overflow: hidden;
+  width: 100%;
+  padding: 20px 0;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  gap: 0; /* 透過 item padding 控制間距 */
+}
+
+.carousel-item {
+  flex: 0 0 100%; /* 手機預設 1 */
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .carousel-item { flex: 0 0 50%; }
+}
+
+@media (min-width: 992px) {
+  .carousel-item { flex: 0 0 33.333%; }
+}
+
+/* 活動卡片樣式 */
+.activity-card {
+  position: relative;
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: #eee;
+}
+
+.activity-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.activity-card-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 15px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.7));
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.activity-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.activity-card:hover img {
+  transform: scale(1.1);
+}
+
+/* --- 通用控制項 --- */
+.carousel-controls {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.carousel-arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  pointer-events: auto;
+}
+
+.carousel-arrow:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: scale(1.1);
+}
+
+.carousel-dots {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  pointer-events: auto;
+}
+
+/* Hero 輪播的指示點要在內部 */
+.overview-hero-carousel .carousel-dots {
+  bottom: 30px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  background: #fff;
+  width: 24px;
+  border-radius: 10px;
+}
+
+/* 手機隱藏箭頭 */
+@media (max-width: 767px) {
+  .carousel-arrow { display: none; }
+  .activity-carousel-section { padding-bottom: 20px; }
+}
+
+.activity-carousel-section {
+  margin-top: 40px;
+  padding-bottom: 50px;
+}
+
+.carousel-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(26, 26, 46, 0.6); /* 使用戶要求的深色半透明遮罩 */
+  z-index: 3;
+}
+
+.overview-hero-inner {
+  position: relative;
+  z-index: 10;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 60px; /* 麵包屑偏移 */
+}
+
+.hero-breadcrumb-light {
+  font-size: 14px;
+  margin-bottom: 24px;
+  opacity: 0.8;
+}
+
+.hero-breadcrumb-light a { color: #fff; text-decoration: none; }
+.hero-breadcrumb-light .sep { margin: 0 8px; }
+
+.hero-title-main {
+  font-size: 56px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.hero-title-main .highlight {
+  color: #60a5fa; /* 在深色背景下直接用淺藍 */
+}
+
+.hero-description {
+  font-size: 22px;
+  line-height: 1.6;
+  opacity: 0.9;
+  max-width: 650px;
+  text-shadow: 0 1px 5px rgba(0,0,0,0.3);
+}
+
+/* 輪播控制：指示點 */
+.carousel-dots {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 20;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  background-color: #fff;
+  transform: scale(1.3);
+}
+
+/* 輪播控制：箭頭 */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 20;
+  transition: all 0.3s ease;
+  font-size: 18px;
+  backdrop-filter: blur(4px);
+}
+
+.carousel-arrow:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-arrow.prev { left: 40px; }
+.carousel-arrow.next { right: 40px; }
+
+/* RWD 修整 */
+@media (max-width: 991px) {
+  .hero-title-main { font-size: 40px; }
+  .carousel-arrow { display: none; } /* 手機版隱藏箭頭 */
+}
+
+@media (max-width: 767px) {
+  .overview-hero-carousel { height: 400px; }
+  .hero-title-main { font-size: 32px; }
+  .hero-description { font-size: 18px; }
+}
+
+/* 類別卡片：玻璃擬態與動態 */
+.category-cards-grid-refined {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  margin-top: -60px; /* 向上偏移壓在 Hero 上 */
+  position: relative;
+  z-index: 20;
+  margin-bottom: 100px;
+}
+
+.cat-card-glass {
+  background: rgba(255, 255, 255, 1);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 24px;
+  padding: 40px;
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cat-card-glass:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.12);
+  border-color: var(--accent);
+}
+
+.cat-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32px;
+}
+
+.cat-card-pill {
+  padding: 6px 16px;
+  border-radius: 99px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.cat-card-icon-box {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.cat-card-icon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 10px;
+}
+
+.cat-card-glass:hover .cat-card-icon-box {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.cat-card-name {
+  font-size: 32px;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 12px;
+}
+
+.cat-card-tagline {
+  font-size: 16px;
+  color: #64748b;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.cat-card-footer-refined {
+  padding-top: 24px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.cat-card-link {
+  font-weight: 700;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cat-card-link .arrow {
+  transition: transform 0.3s ease;
+}
+
+.cat-card-glass:hover .arrow {
+  transform: translateX(6px);
+}
+
+/* Modal 課表區塊樣式 */
+.modal-section-schedule {
+  margin: 32px 0;
+  padding: 0 20px;
+}
+
+.modal-schedule-container {
+  margin-top: 12px;
+  background: #f8fafc;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+}
+
+.modal-schedule-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.modal-schedule-container:hover .modal-schedule-img {
+  transform: scale(1.02);
+}
+
+/* Modal 課程簡介與標籤樣式 */
+.section-label-small {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  opacity: 0.8;
+}
+
+.modal-section-intro {
+  margin: 32px 0;
+  padding: 0 20px;
+}
+
+.modal-intro-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #475569;
+  text-align: justify;
+}
+
+.modal-section-takeaway {
+  margin: 32px 20px;
+  padding: 24px;
+  border-radius: 16px;
+}
+
+.takeaway-box-refined {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.takeaway-box-icon {
+  font-size: 2rem;
+}
+
+.takeaway-box-content {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #1e293b;
+}
+
+/* 選課指南卡片 */
+.selection-feature-section {
+  padding: 80px 0;
+}
+
+.section-badge {
+  text-align: center;
+  color: var(--color-orange);
+  font-weight: 700;
+  letter-spacing: 2px;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.section-title-center {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 800;
+  margin-bottom: 60px;
+}
+
+.selection-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.feature-card-refined {
+  background: #f8fafc;
+  padding: 32px;
+  border-radius: 20px;
+  text-align: center;
+  transition: background 0.3s ease;
+}
+
+.feature-card-refined:hover {
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+}
+
+.feature-icon {
+  font-size: 40px;
+  margin-bottom: 24px;
+}
+
+.feature-age {
+  font-size: 14px;
+  color: #64748b;
+  margin-bottom: 8px;
+}
+
+.feature-cat {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+
+.feature-cat.teal { color: var(--color-teal); }
+.feature-cat.purple { color: var(--color-purple); }
+.feature-cat.coral { color: var(--color-coral); }
+.feature-cat.blue { color: var(--color-blue); }
+
+.feature-desc {
+  font-size: 15px;
+  color: #475569;
+  line-height: 1.6;
+}
+
+/* 沉浸式活動 Banner */
+.activity-immersive-section {
+  position: relative;
+  padding: 120px 0;
+  background: #fff;
+  overflow: hidden;
+}
+
+.activity-bg-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 180px;
+  font-weight: 900;
+  color: #f1f5f9;
+  white-space: nowrap;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.activity-box-refined {
+  position: relative;
+  z-index: 5;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 32px;
+  padding: 60px;
+  display: flex;
+  gap: 80px;
+  align-items: center;
+  box-shadow: 0 20px 40px -15px rgba(0,0,0,0.05);
+}
+
+.activity-info-part { flex: 1.2; }
+.activity-h2 { font-size: 44px; font-weight: 800; line-height: 1.2; margin: 16px 0 24px; }
+.activity-p { font-size: 17px; color: #475569; line-height: 1.8; }
+
+.activity-visual-part {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.act-visual-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #f8fafc;
+  padding: 16px 24px;
+  border-radius: 16px;
+  transition: transform 0.3s ease;
+}
+
+.act-visual-item:hover { transform: scale(1.05); background: #fff; box-shadow: var(--shadow-sm); }
+
+.act-visual-item .icon { font-size: 24px; }
+.act-visual-item p { font-weight: 700; color: #1e293b; }
+
+.act-icon-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 1024px) {
+  .selection-feature-grid { grid-template-columns: repeat(2, 1fr); }
+  .activity-box-refined { flex-direction: column; padding: 40px; gap: 40px; }
+}
+
+@media (max-width: 767px) {
+  .hero-title-main { font-size: 40px; }
+  .category-cards-grid-refined { grid-template-columns: 1fr; gap: 20px; margin-top: -40px; }
+  .cat-card-glass { padding: 32px; }
+  .selection-feature-grid { grid-template-columns: 1fr; }
+  .activity-h2 { font-size: 32px; }
+  .activity-bg-text { font-size: 80px; }
+}
+
+.breadcrumb {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 24px;
+}
+
+.breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.courses-hero-title {
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: 8px;
+}
+
+.courses-hero-subtitle {
+  font-size: 20px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+@media (max-width: 767px) {
+  .courses-hero {
+    height: 200px;
+  }
+  .courses-hero-title {
+    font-size: 32px;
+  }
+  .courses-hero-subtitle {
+    font-size: 16px;
+  }
+}
+
+/* 區塊 2：類別卡片 */
+.courses-categories-section {
+  padding: 80px 24px;
+  background-color: var(--color-white);
+}
+
+.courses-categories-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.category-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+
+.category-large-card {
+  height: 220px;
+  border-radius: var(--card-radius);
+  display: flex;
+  align-items: center;
+  padding: 40px;
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.category-large-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+}
+
+.category-card-emoji {
+  font-size: 64px;
+  margin-right: 32px;
+  flex-shrink: 0;
+}
+
+.category-card-info {
+  flex: 1;
+}
+
+.category-card-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.category-card-count {
+  font-size: 14px;
+  color: var(--color-gray-text);
+  margin-bottom: 12px;
+}
+
+.category-card-desc {
+  font-size: 16px;
+  color: inherit;
+  opacity: 0.8;
+  margin-bottom: 12px;
+}
+
+.category-card-link {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+@media (max-width: 991px) {
+  .category-large-card {
+    padding: 24px;
+  }
+  .category-card-emoji {
+    font-size: 48px;
+    margin-right: 20px;
+  }
+}
+
+@media (max-width: 767px) {
+  .category-overview-grid {
+    grid-template-columns: 1fr;
+  }
+  .category-large-card {
+    height: auto;
+    min-height: 180px;
+  }
+}
+
+/* 區塊 3：選課對照表 */
+.comparison-section {
+  padding: 80px 24px;
+  background-color: var(--color-gray-bg);
+}
+
+.comparison-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.comparison-table-wrapper {
+  overflow-x: auto;
+  border-radius: var(--card-radius);
+  box-shadow: var(--shadow-sm);
+  background-color: var(--color-white);
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.comparison-table th {
+  background-color: var(--color-dark);
+  color: var(--color-white);
+  padding: 16px 24px;
+  text-align: left;
+  font-size: 18px;
+}
+
+.comparison-table td {
+  padding: 16px 24px;
+  border-bottom: 1px solid #eee;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.comparison-table tr:nth-child(even) td {
+  background-color: var(--color-gray-bg);
+}
+
+.comparison-table tr td:first-child {
+  font-weight: 700;
+  width: 30%;
+}
+
+@media (max-width: 767px) {
+  .comparison-section {
+    padding: 60px 24px;
+  }
+}
+
+/* 區塊 4：下午活動預告 */
+.activities-preview-row {
+  background-color: var(--color-dark);
+  color: var(--color-white);
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 0 24px;
+}
+
+.cat-card-icon-box {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.cat-card-icon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 5px;
+}
+
+.activities-icons {
+  display: flex;
+  gap: 12px;
+  font-size: 24px;
+}
+
+.activities-text {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+@media (max-width: 767px) {
+  .activities-preview-row {
+    height: auto;
+    padding: 24px;
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* =========================================
+   課程類別頁面 (courses-xxx.html) 專屬樣式
+   ========================================= */
+
+/* 區塊 1：類別 Hero */
+.category-hero-section {
+  display: flex;
+  align-items: center;
+  padding: 60px 40px;
+  position: relative;
+  overflow: hidden;
+  margin-top: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* 背景遮罩，確保文字白字在圖片上清晰 */
+.category-hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 40%, rgba(255,255,255,0.4) 100%);
+  z-index: 1;
+}
+
+/* 當有背景圖時的特殊遮罩（如果需要的話，可以在 JS 動態加 class，但這裡先用通用漸層） */
+.category-hero-section.has-bg::before {
+  background: linear-gradient(90deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0.2) 100%);
+}
+
+
+/* 左側色條 */
+.category-hero-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 6px; /* 4px 改 6px 更有存在感 */
+}
+
+.category-hero-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+/* 麵包屑 */
+.hero-breadcrumb {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 24px;
+}
+
+.hero-breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.hero-breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+/* 標題與 Badge */
+.hero-title-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.hero-title {
+  font-size: 52px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.hero-course-badge {
+  background-color: var(--color-white);
+  border: 1px solid;
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.hero-subtitle {
+  font-size: 18px;
+  color: #666;
+  max-width: 700px;
+  line-height: 1.6;
+}
+
+/* 裝飾 Emoji */
+.hero-deco-emoji {
+  position: absolute;
+  right: 40px;
+  bottom: -20px;
+  font-size: 140px;
+  opacity: 0.15;
+  user-select: none;
+  z-index: 1;
+}
+
+@media (max-width: 1024px) {
+  .hero-title { font-size: 40px; }
+  .hero-deco-emoji { font-size: 100px; right: 20px; }
+}
+
+@media (max-width: 767px) {
+  .category-hero-section {
+    padding: 100px 24px 40px 24px;
+  }
+  .hero-title-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .hero-title { font-size: 32px; }
+  .hero-deco-emoji { display: none; }
+}
+
+/* 區塊 2：課程網格清單 */
+.course-grid-section {
+  padding: 60px 24px 100px 24px;
+  background-color: var(--color-white);
+}
+
+.course-grid-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.course-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px; /* 桌機 3 欄 gap 24px */
+}
+
+/* 每張課程卡片基礎 */
+.course-card {
+  background-color: var(--color-white);
+  border: 0.5px solid var(--color-border);
+  border-radius: var(--card-radius);
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+}
+
+.course-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ① 頂部色條 */
+.course-card-top-bar {
+  height: 8px;
+  width: 100%;
+}
+
+/* ② 標題列 */
+.course-card-title-row {
+  padding: 20px 20px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.course-new-badge {
+  background-color: var(--color-orange);
+  color: var(--color-white);
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.course-name-text {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ③ 標籤列 */
+.course-tag-row {
+  padding: 8px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.course-age-badge {
+  background-color: #f0f0f0;
+  color: #666;
+  font-size: 12px;
+  padding: 2px 10px;
+  border-radius: 4px;
+}
+
+.course-new-label {
+  font-size: 12px;
+  color: var(--color-orange);
+  font-weight: 500;
+}
+
+/* ④ 一句話說明 */
+.course-tagline-text {
+  padding: 0 20px 12px;
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex: 1;
+}
+
+/* ⑤ 帶回家的成品區 */
+.course-takeaway-area {
+  padding: 12px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.takeaway-icon {
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.takeaway-text {
+  font-size: 13px;
+  line-height: 1.4;
+  color: inherit;
+  opacity: 0.9;
+}
+
+/* ⑥ 底部按鈕區 */
+.course-card-footer {
+  padding: 16px 20px;
+  border-top: 1px solid var(--color-border);
+}
+
+.btn-course-details {
+  width: 100%;
+  padding: 10px;
+  background-color: transparent;
+  border: 1px solid;
+  border-radius: var(--btn-radius);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+@media (max-width: 1024px) {
+  .course-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .course-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .course-card {
+    min-height: auto;
+  }
+}
+
+/* 區塊 3：小提醒 */
+.category-note-container {
+  max-width: var(--max-width);
+  margin: 60px auto 0 auto;
+}
+
+.category-note-box {
+  display: flex;
+  gap: 20px;
+  background-color: var(--color-gray-bg);
+  padding: 32px;
+  border-radius: var(--card-radius);
+  align-items: flex-start;
+}
+
+.note-icon { font-size: 32px; }
+.note-title { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+.note-content p { font-size: 16px; line-height: 1.6; color: var(--color-gray-text); }
+
+@media (max-width: 767px) {
+  .category-note-box { padding: 24px; flex-direction: column; gap: 12px; }
+}
