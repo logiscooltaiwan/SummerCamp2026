@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>課程介紹｜2026 邏輯酷夏令營</title>
+  <meta name="description" content="超過 20 門課程，涵蓋 Minecraft、Roblox、AI 創作，適合國小至國中生。每週 4 種課程同時開班，自由選擇。">
+  <meta property="og:title" content="課程介紹｜2026 邏輯酷夏令營">
+  <meta property="og:description" content="Mini、Minecraft、Roblox、AI 四大類，20+ 門課任選，每門課都有作品帶回家！">
+  <meta property="og:image" content="assets/images/og-cover.jpg">
+  <link rel="canonical" href="courses.html">
+  <link rel="preload" href="assets/css/main.css" as="style">
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;500;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+</head>
+<body>
+ 
+  <div id="navbar-container"></div>
+ 
+  <main id="main-content">
+    <section id="courses-hero"></section>
+    <section id="category-cards" class="container"></section>
+    <section id="selection-guide" class="container"></section>
+    <section id="activity-banner"></section>
+  </main>
+ 
+  <div id="footer-cta-container"></div>
+  <div id="footer-container"></div>
+ 
+  <script src="data/config.js"></script>
+  <script src="data/courses.js"></script>
+  <script src="assets/js/components.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 依序執行渲染函式
+      if (typeof renderNavbar === 'function') renderNavbar();
+      if (typeof renderCoursesHero === 'function') renderCoursesHero();
+      if (typeof renderCategoryCards === 'function') renderCategoryCards();
+      if (typeof renderSelectionGuide === 'function') renderSelectionGuide();
+      if (typeof renderActivityBanner === 'function') renderActivityBanner();
+      
+      // Footer 組件
+      if (typeof renderFooterCTA === 'function') renderFooterCTA('#footer-cta-container');
+      if (typeof renderFooter === 'function') renderFooter();
+    });
+  </script>
+ 
+</body>
+</html>

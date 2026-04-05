@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026 邏輯酷夏令營｜Minecraft × Roblox × AI 科技夏令營</title>
+  <meta name="description" content="7–8月暑期夏令營，上午學Minecraft、Roblox、AI程式設計，下午溜冰攀岩高爾夫！超早鳥優惠，名額有限立即報名。">
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="2026 邏輯酷夏令營｜Minecraft × Roblox × AI 科技夏令營">
+  <meta property="og:description" content="7–8月暑期夏令營，上午學Minecraft、Roblox、AI程式設計，下午溜冰攀岩高爾夫！超早鳥優惠，名額有限立即報名。">
+  <meta property="og:image" content="https://【網域】/assets/images/og-cover.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://【網域】/">
+  <link rel="canonical" href="https://【網域】/">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+TC:wght@300;500;700&display=swap" rel="stylesheet">
+  
+  <!-- CSS -->
+  <link rel="preload" href="./assets/css/main.css" as="style">
+  <link rel="preload" href="./assets/js/main.js" as="script">
+  <link rel="preload" href="./assets/js/components.js" as="script">
+  <link rel="stylesheet" href="./assets/css/reset.css">
+  <link rel="stylesheet" href="./assets/css/variables.css">
+  <link rel="stylesheet" href="./assets/css/main.css">
+</head>
+<body>
+  <!-- 內容 -->
+  <main>
+    <section class="hero">
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="hero-badge animate-fade-up anim-delay-1">超早鳥優惠｜4/18 截止</div>
+          <h1 class="hero-title animate-fade-up anim-delay-2"><span class="nowrap">科技 × 冒險 × 創作</span><br>這個暑假不一樣！</h1>
+          <p class="hero-subtitle animate-fade-up anim-delay-3">Minecraft × Roblox × AI 全新課程｜<span class="nowrap">下午溜冰・攀岩・高爾夫・烘焙・美術</span></p>
+          <div class="hero-actions animate-fade-up anim-delay-4">
+            <a href="#" class="btn-primary" id="hero-register-btn">立即報名 <span class="arrow">→</span></a>
+          </div>
+        </div>
+        <div class="hero-visual animate-fade-up anim-delay-5">
+          <!-- Placeholder 圖片區域 -->
+          <!-- <div class="visual-placeholder"></div> -->
+          <img src="./assets/images/首頁.png" alt="科技夏令營首圖" loading="eager" class="visual-placeholder" style="object-fit: cover; width: 100%;">
+        </div>
+      </div>
+    </section>
+
+    <!-- 活動亮點數字區塊 -->
+    <section class="highlights-section">
+      <div class="highlights-container" id="highlights-container">
+        <!-- 動態產生亮點卡片 -->
+      </div>
+    </section>
+
+    <!-- 課程分類入口 -->
+    <section class="categories-section">
+      <div class="categories-container">
+        <h2 class="section-title animate-on-scroll slide-up">探索課程類別</h2>
+        <div class="categories-grid" id="categories-grid">
+          <!-- 動態產生分類卡片 -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 下午活動展示區塊 -->
+    <section class="activities-section">
+      <div class="activities-container">
+        <h2 class="section-title animate-on-scroll slide-up">上午學科技，下午玩翻天 🎉</h2>
+        
+        <div class="carousel-wrapper">
+          <button class="carousel-btn carousel-prev" id="carousel-prev" aria-label="上一個">&lt;</button>
+          
+          <div class="carousel-viewport" id="carousel-viewport">
+            <div class="carousel-track" id="activities-track">
+              <!-- 動態產生下午活動卡片 -->
+            </div>
+          </div>
+          
+          <button class="carousel-btn carousel-next" id="carousel-next" aria-label="下一個">&gt;</button>
+        </div>
+        
+        <p class="activities-note">每週換一樣，連報不重複！</p>
+      </div>
+    </section>
+
+    <!-- 定價方案區塊 -->
+    <section class="pricing-section">
+      <div class="pricing-container">
+        <div class="pricing-header">
+          <h2 class="section-title animate-on-scroll slide-up">限時優惠方案</h2>
+          
+        </div>
+        
+        <div class="pricing-grid" id="pricing-grid">
+          <!-- 動態產生方案卡片 -->
+        </div>
+        
+        <div class="pricing-footer-note animate-on-scroll slide-up" style="text-align: center; margin-top: 32px; font-size: 1.1rem; color: var(--color-gray-text); font-weight: 500;">
+          【報越多，省越多】 團報或連續報名多梯次皆享折扣，詳情請點擊官方 Line 洽詢
+        </div>
+      </div>
+    </section>
+
+    <!-- 週次時程表區塊 -->
+    <section class="schedule-section">
+      <div class="schedule-container">
+        <h2 class="section-title animate-on-scroll slide-up">營隊時程表</h2>
+        
+        <!-- 桌機版 Tabs -->
+        <div class="schedule-tabs d-none-mobile">
+          <button class="tab-btn active" data-month="july">7 月份 (第 1-5 週)</button>
+          <button class="tab-btn" data-month="august">8 月份 (第 6-9 週)</button>
+        </div>
+        
+        <!-- 手機版 Select -->
+        <div class="schedule-select-wrapper d-block-mobile">
+          <label for="mobile-week-select">選擇梯次：</label>
+          <select id="mobile-week-select" class="schedule-select">
+            <!-- 動態選項 -->
+          </select>
+        </div>
+        
+        <div class="schedule-content" id="schedule-content">
+          <!-- 週次卡片將由 JS 產生 -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Q&A 精選區 -->
+    <section class="faq-section">
+      <div class="faq-container">
+        <h2 class="section-title animate-on-scroll slide-up">常見問題 Q&A</h2>
+        <div class="accordion-wrapper" id="home-accordion">
+          <!-- 會由 JS 從 config.js 動態產生 -->
+        </div>
+        
+        <div class="faq-more">
+          <a href="faq.html" class="faq-more-link">查看完整 Q&A <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 底部 CTA 區 -->
+    <div id="cta-placeholder"></div>
+  </main>
+  
+  <!-- Scripts -->
+  <script defer src="./assets/js/components.js"></script>
+  <script defer src="./data/courses.js"></script>
+  <script defer src="./data/config.js"></script>
+  <script defer src="./assets/js/main.js"></script>
+
+  <script>document.addEventListener('DOMContentLoaded', function() { 
+    if (window.renderFooterCTA) window.renderFooterCTA('#cta-placeholder');
+    if (window.renderFooter) window.renderFooter(); 
+  });</script>
+</body>
+</html>
+
+
+
+
+

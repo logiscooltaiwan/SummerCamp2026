@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini 低年級課程｜2026 邏輯酷夏令營</title>
+  <meta name="description" content="邏輯酷夏令營 Mini 低年級班，專為國小一至三年級設計，共 5 門課程，無需程式基礎。">
+  <meta property="og:title" content="Mini 低年級課程｜2026 邏輯酷夏令營">
+  <meta property="og:description" content="專為大班至小三設計，從 AI 卡通 MV 到麥塊迷宮，每門課都有作品帶回家！">
+  <meta property="og:image" content="assets/images/og-cover.jpg">
+  <link rel="canonical" href="courses-mini.html">
+  <link rel="preload" href="assets/css/main.css" as="style">
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;500;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+</head>
+<body>
+ 
+  <!-- 主要內容容器 -->
+  <main id="main-content"></main>
+ 
+  <!-- 底部放置區 -->
+  <div id="footer-cta-container"></div>
+  <div id="footer-container"></div>
+ 
+  <script src="data/config.js"></script>
+  <script src="data/courses.js"></script>
+  <script src="assets/js/components.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+ 
+  <script>
+    const PAGE_CONFIG = {
+      category: 'mini',
+      title: 'Mini 低年級課程',
+      subtitle: '專為幼稚園大班至國小三年級設計，無需任何程式基礎，老師全程陪伴引導',
+      colorVar: 'teal',
+      heroHeight: '260px',
+      heroImg: 'assets/images/hero/hero-minecraft1.png'
+    };
+ 
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof renderCategoryPage === 'function') {
+        renderCategoryPage(PAGE_CONFIG);
+      }
+    });
+  </script>
+ 
+</body>
+</html>

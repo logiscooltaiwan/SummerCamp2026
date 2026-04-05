@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roblox 遊戲開發課程｜2026 邏輯酷夏令營</title>
+  <meta name="description" content="2026 邏輯酷夏令營 Roblox 遊戲開發，從玩家晉升玩家製作人。">
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;500;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+</head>
+<body>
+ 
+  <main id="main-content"></main>
+ 
+  <div id="footer-cta-container"></div>
+  <div id="footer-container"></div>
+ 
+  <script src="data/config.js"></script>
+  <script src="data/courses.js"></script>
+  <script src="assets/js/components.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+ 
+  <script>
+    const PAGE_CONFIG = {
+      category: 'roblox',
+      title: 'Roblox 系列課程',
+      subtitle: '學習 Lua 程式語言與 3D 建模，親手打造屬於自己的元宇宙遊戲',
+      colorVar: 'coral',
+      heroHeight: '260px',
+      heroImg: 'assets/images/hero/hero-roblox.png'
+    };
+ 
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof renderCategoryPage === 'function') {
+        renderCategoryPage(PAGE_CONFIG);
+      }
+    });
+  </script>
+ 
+</body>
+</html>

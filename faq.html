@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>常見問題｜2026 邏輯酷夏令營</title>
+  <meta name="description" content="報名前有疑問？我們整理了最常被問到的問題集，從課程安排、設備自備到接送時間一次解答。">
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="常見問題｜2026 邏輯酷夏令營">
+  <meta property="og:description" content="報名前有疑問？我們整理了最常被問到的問題集，從課程安排、設備自備到接送時間一次解答。">
+  <meta property="og:image" content="https://【網域】/assets/images/og-cover.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://【網域】/faq.html">
+  <link rel="canonical" href="https://【網域】/faq.html">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+TC:wght@300;500;700&display=swap" rel="stylesheet">
+  
+  <link rel="preload" href="./assets/css/main.css" as="style">
+  <link rel="preload" href="./assets/js/main.js" as="script">
+  <link rel="preload" href="./assets/js/components.js" as="script">
+  <link rel="stylesheet" href="./assets/css/reset.css">
+  <link rel="stylesheet" href="./assets/css/variables.css">
+  <link rel="stylesheet" href="./assets/css/main.css">
+</head>
+<body>
+  <!-- 內容 -->
+  <main>
+    <!-- Hero 區 -->
+    <section class="faq-page-hero">
+      <h1 class="faq-page-title">常見問題 Q&A</h1>
+      <p class="faq-page-subtitle">找不到答案？歡迎隨時私訊我們！</p>
+    </section>
+
+    <!-- 完整問答區塊 -->
+    <section class="faq-page-content">
+      <div class="faq-page-container" id="faq-container-full">
+        <!-- JS 動態產生類別與 Accordion -->
+      </div>
+    </section>
+
+    <!-- 底部 CTA 區 -->
+    <section class="cta-section" style="padding-top: 80px;">
+      <div class="cta-container animate-on-scroll slide-up">
+        <h2 class="cta-title">準備好了嗎？</h2>
+        <p class="cta-subtitle">趁早報名，為孩子搶下手刀名額！</p>
+        <a href="#" class="btn-cta" id="cta-register-btn">立即報名</a>
+      </div>
+    </section>
+  </main>
+  
+  <!-- Scripts：依賴順序 defer 載入，保證 FAQ/CONFIG 先於 logic -->
+  <script defer src="./data/config.js"></script>
+  <script defer src="./data/courses.js"></script>
+  <script defer src="./assets/js/components.js"></script>
+  <script defer src="./assets/js/main.js"></script>
+  <script defer src="./assets/js/faq.js"></script>
+</body>
+</html>
+
+
+
+
