@@ -41,7 +41,7 @@ const CONFIG = {
     { number: 20, suffix: '+', label: '門課程可選' },
     { number: 9, suffix: '', label: '週梯次' },
     { number: 6, suffix: '', label: '種下午活動' },
-    { number: 4, suffix: '', label: '堂課同時開' },
+    { number: 4, suffix: '', label: '營隊/每週' },
   ],
 
   // 下午活動
