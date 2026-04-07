@@ -63,8 +63,12 @@ document.addEventListener('DOMContentLoaded', () => {
     dropdown.addEventListener('click', (e) => {
       if (window.innerWidth <= 767) {
         if (e.target.classList.contains('nav-link')) {
-          e.preventDefault();
-          dropdown.classList.toggle('active');
+          // 如果選單尚未展開，先展開它並阻止跳轉
+          if (!dropdown.classList.contains('active')) {
+            e.preventDefault();
+            dropdown.classList.add('active');
+          }
+          // 如果已經是 active 狀態，則允許預設跳轉行為 (href="courses.html")
         }
       }
     });
