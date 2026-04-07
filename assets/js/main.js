@@ -17,21 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // (手機版漢堡選單與 RWD 邏輯已移至 components.js 統一管理)
 
-    // ============================
-    // 3. 手機版下拉選單點擊展開
-    // ============================
-    const hasDropdown = document.querySelector('.has-dropdown');
-    const dropdownLink = hasDropdown ? hasDropdown.querySelector('.nav-link') : null;
-
-    if (dropdownLink) {
-      dropdownLink.addEventListener('click', (e) => {
-        // 在手機版時
-        if (window.innerWidth <= 767) {
-          e.preventDefault(); // 阻止跳轉
-          hasDropdown.classList.toggle('active'); // 切換展開/收合狀態
-        }
-      });
-    }
+    // (3. 手機版下拉選單展開邏輯已統一在 components.js 處理)
 
     // ============================
     // 4. 點擊連結後自動關閉手機版選單
@@ -40,7 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     allLinks.forEach(link => {
       link.addEventListener('click', () => {
-        if (window.innerWidth <= 767 && hamburger.classList.contains('active')) {
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        if (window.innerWidth <= 767 && hamburger && hamburger.classList.contains('active')) {
           hamburger.classList.remove('active');
           navMenu.classList.remove('active');
           document.body.style.overflow = '';
