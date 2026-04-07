@@ -73,16 +73,23 @@ img {
   background: none;
   border: none;
   cursor: pointer;
+  position: relative; /* z-index 必須搭配 position 才生效 */
   z-index: 1001; /* 確保在全螢幕選單之上 */
+  padding: 4px;
 }
 
 .hamburger span {
   display: block;
   width: 25px;
   height: 3px;
-  background-color: var(--color-dark);
+  background-color: var(--color-dark); /* 改回深色，確保在頂端淺色背景可見 */
   margin: 5px 0;
   transition: all 0.3s ease;
+}
+
+/* 選單固定後保持深色 */
+.navbar.sticky .hamburger span {
+  background-color: var(--color-dark);
 }
 
 /* 選單與列表 */
@@ -735,19 +742,22 @@ img {
 /* 軌道 */
 .carousel-track {
   display: flex;
-  gap: 20px;
   transition: transform 0.4s ease-out;
 }
 
 /* 卡片 */
 .activity-card {
-  flex: 0 0 calc((100% - 80px) / 5); /* 預設 5 張 */
+  flex: 0 0 calc((100% - 48px) / 3); /* 桌面顯示 3 張，24px * 2 = 48px */
   display: flex;
   flex-direction: column;
   background-color: var(--color-gray-bg);
   border-radius: var(--card-radius);
   overflow: hidden;
   text-align: left;
+}
+
+.activity-card + .activity-card {
+  margin-left: 24px;
 }
 
 .activity-image {
@@ -792,7 +802,10 @@ img {
 /* RWD for activities */
 @media (max-width: 1024px) {
   .activity-card {
-    flex: 0 0 calc((100% - 40px) / 3); /* 平板顯示 3 張 */
+    flex: 0 0 calc((100% - 24px) / 2); /* 平板顯示 2 張 */
+  }
+  .activity-card + .activity-card {
+    margin-left: 24px;
   }
 }
 
@@ -822,6 +835,7 @@ img {
   .activity-card {
     width: 100%;
     flex: none;
+    margin-left: 0 !important;
   }
   
   .activities-note {
