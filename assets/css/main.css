@@ -170,7 +170,7 @@ img {
 .dropdown-link {
   display: block;
   padding: 10px 24px;
-  color: var(--color-dark);
+  color: var(--color-dark) !important;
   font-size: 15px;
   font-weight: 500;
   transition: background-color 0.2s, color 0.2s;
@@ -180,7 +180,7 @@ img {
 
 .dropdown-link:hover {
   background-color: var(--color-gray-bg);
-  color: var(--color-orange);
+  color: var(--color-orange) !important;
 }
 
 /* 立即報名按鈕 */
@@ -280,6 +280,9 @@ img {
 
   .has-dropdown.active .dropdown-menu {
     display: block;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
   }
   
   .btn-register.nav-btn {
