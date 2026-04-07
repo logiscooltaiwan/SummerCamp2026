@@ -15,21 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // ============================
-    // 2. 手機版漢堡選單展開/收合
-    // ============================
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('nav-menu');
-    
-    if (hamburger && navMenu) {
-      hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
-        
-        // 展開時禁止背景滾動
-        document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
-      });
-    }
+    // (手機版漢堡選單與 RWD 邏輯已移至 components.js 統一管理)
 
     // ============================
     // 3. 手機版下拉選單點擊展開
@@ -220,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // 2. Carousel 互動邏輯 (桌機/平板版)
       let currentIndex = 0;
       let cardWidth = 0;
-      let gap = 20;
+      let gap = 24;
 
       const updateCarousel = () => {
         if (window.innerWidth <= 767) {
@@ -233,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const viewportWidth = document.getElementById('carousel-viewport').offsetWidth;
           
           // 根據 CSS 的 RWD 規則手動配置可視數量，確保不被小數點誤差導致卡死
-          const maxVisible = window.innerWidth <= 1024 ? 3 : 5;
+          const maxVisible = window.innerWidth <= 1024 ? 2 : 3;
           const maxIndex = Math.max(0, cards.length - maxVisible);
           
           if (currentIndex > maxIndex) currentIndex = maxIndex;
